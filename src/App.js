@@ -25,8 +25,8 @@ function App(props) {
   }, [])
 
   return (
-    <div className="App clearfix bg-light">
-      <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
+    <div className="App clearfix container">
+      {/* <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/> */}
       <Post/>
     </div>
   );

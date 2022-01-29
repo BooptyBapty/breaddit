@@ -1,23 +1,27 @@
 import {posts, ethereum} from "aleph-js"
 
 function Post(props) {
-    const send = async ()=>{
+    const send = async (channel, body)=>{
         await posts.submit(
         props.alephAccount.address,
         'mytype',
-        {'body': 'test post written from my ass'},
+        {'body': body},
         {
             'account': props.alephAccount,
-            'channel': 'TST',
+            'channel': channel,
             'api_server': 'https://api2.aleph.im'
         }
         )
     }
     return <div className='container clearfix'>
         <form>
-            <label for="fname">First name:</label>
-            <input type="text" id="fname" name="fname"></input>
-            <input type="submit" onClick={async()=>{send()}}></input>
+            <select>
+                <option value="test"> test </option>
+                <option value="test2"> test2 </option>
+            </select><br></br>
+            <input type="text" name="title"></input><br></br>
+            <input type="textarea" name="text(optional)"></input><br></br>
+            <input type="submit" onClick={async()=>{send()}} value="Post"></input>
         </form>
     </div>;
 }
