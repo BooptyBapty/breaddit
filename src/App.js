@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
+import Post from './components/Post';
 
 function App(props) {
 
@@ -24,8 +25,9 @@ function App(props) {
   }, [])
 
   return (
-    <div className="App">
+    <div className="App clearfix bg-light">
       <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
+      <Post/>
     </div>
   );
 }
