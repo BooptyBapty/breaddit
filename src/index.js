@@ -33,7 +33,7 @@ const connectWeb3 = async (e) => {
   
   if (window.ethereum.isConnected()) {
     try {
-      alephAccount = await ethereum.from_provider(window['ethereum'])
+      alephAccount = await ethereum.from_provider(window['ethereum'] || window.web3.currentProvider)
     } catch(error) {
       console.error(error)
     }
