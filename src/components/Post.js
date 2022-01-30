@@ -1,6 +1,6 @@
 import React from 'react';
-import UpvoteLogo from'../icons/upvote-hollow.svg'
-import DownvoteLogo from'../icons/downvote-hollow.svg'
+import UpvoteLogo from'../icons/upvote.png'
+import DownvoteLogo from'../icons/downvote.png'
 
 /* 
     UPVOTE
@@ -18,13 +18,16 @@ function Post(props) {
 
     }
 
-  return <div className=''>
-      <button className='' onClick={()=>{upvote()}}><img src={UpvoteLogo} alt='upvoteimg'></img></button>
-      <button className='' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
-      <input readOnly value={props.result.content.body.title}></input>
-      <br></br>
-      <input readOnly value={props.result.content.body.body}></input>
-  </div>;
+  return <div className='post border rounded'>
+            <div className='vote-container'>
+                <button className='vote' onClick={()=>{upvote()}}><img src={UpvoteLogo} alt='upvoteimg'></img></button>
+                <button className='vote' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
+            </div>
+            <div className='post-content'>
+                <input readOnly value={props.result.content.body.title}></input>
+                <input readOnly value={props.result.content.body.body}></input>
+            </div>
+        </div>;
 }
 
 export default Post;

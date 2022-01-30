@@ -24,7 +24,7 @@ function Posts() {
         console.log(result);
     },[result])
 
-  return <div>
+  return <div className='container posts my-2'>
       {renderPosts()}
   </div>;
 }

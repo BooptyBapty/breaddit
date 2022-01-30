@@ -1,14 +1,15 @@
+import RedditLogo from '../icons/redditlogo.png'
+
 function Navbar(props) {
 
   return (
-    <nav className="">
-        <a className="font-bold underline" href="#">Reddit Clone</a>
-        <div className='col'></div>
+    <nav className="bg-white w-screen border-b navbar">
+        <a className="logo" href="#"><img className="logo-img" src={RedditLogo} alt='reddit logo'></img></a>
         {
           props.walletAddress ?
-          <a className="" href="#">{props.walletAddress}</a>
+          <button className="account" href="#">{props.walletAddress}</button>
           :
-          <a className="" aria-current="page" href="#" onClick={async()=>{props.connectWallet()}}>Connect Wallet</a>
+          <button className="account account-btn border" aria-current="page" href="#" onClick={async()=>{props.connectWallet()}}>Connect Wallet</button>
         }
     </nav>
   );

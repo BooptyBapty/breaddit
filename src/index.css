@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.App{
+    background-color: rgb(219,224,231);
+    min-height: 100vh;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+.logo{
+    width: 150px;
+}
+.account-btn{
+    font-weight: bold;
+    padding: 0px 15px;
+    height: 40px;
+    border-radius: 20px;
+    border-color: rgb(106, 175, 255);
+    color: rgb(106, 109, 255);
+}
+.account-btn:hover{
+    background-color: rgb(226, 239, 255);
+}
+.posts{
+    display: flex;
+    justify-content: center;
+}
+.post{
+    background-color: white;
+    width: fit-content;
+    min-width: 40vw;
+    height: fit-content;
+    display: flex;
+    min-height: 100px;
+    box-shadow: 1px;
+}
+.vote-container{
+    background-color: rgb(249,248,250);
+    display: flex;
+    flex-direction: column;
+    width: 20px;
+}
+.post-content{
+    display: flex;
+    flex-direction: column;
+}
+.vote{
+    width: 20px;
+}
+.vote img{
+    width: 100%;
+}
