@@ -25,26 +25,26 @@ function CreatePost(props) {
         }
         )
     }
-    return <div className='container clearfix'>
-        <form className="container">
-            <div className="form-group">
+    return <div className=''>
+        <form className="">
+            <div className="">
                 <label>Select Community</label>
-                <select className="form-control" value={community} onChange={(e)=>{setCommunity(e.target.value)}} required>
+                <select className="" value={community} onChange={(e)=>{setCommunity(e.target.value)}} required>
                     <option> TEST </option>
                     <option> TEST2 </option>
                 </select><br></br>
             </div>
-            <input className="form-control" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body})}} required></input><br></br>
-            <div className="form-group">
+            <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body})}} required></input><br></br>
+            <div className="">
                 <label>Type of Post</label>
-                <select className="form-control" value={type} onChange={(e)=>{setType(e.target.value)}} required>
+                <select className="" value={type} onChange={(e)=>{setType(e.target.value)}} required>
                     <option value="text"> Text </option>
                     <option value="content"> Media </option>
                     <option value="link"> Link </option>
                 </select><br></br>
             </div>
-            <textarea className="form-control" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value})}}></textarea><br></br>
-            <input className="btn btn-secondary float-end" type="submit" onClick={async()=>{send()}} value="Post"></input>
+            <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value})}}></textarea><br></br>
+            <input className="" type="submit" onClick={async()=>{send()}} value="Post"></input>
         </form>
     </div>;
 }
