@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import Post from './components/Post';
+import Posts from './components/Posts'
+import CreatePost from './components/CreatePost';
 
 function App(props) {
 
@@ -27,10 +28,8 @@ function App(props) {
   return (
     <div className="App">
       <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
-      <br></br>
-      <br></br>
-      <br></br>
-      <Post walletAddress={walletAddress} alephAccount={alephAccount}/>
+      <Posts/>
+      {/* <CreatePost walletAddress={walletAddress} alephAccount={alephAccount}/> */}
     </div>
   );
 }

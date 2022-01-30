@@ -1,7 +1,7 @@
 function Navbar(props) {
 
   return (
-    <nav className="navbar fixed-top navbar-expand-lg navbar-light container">
+    <nav className="navbar fixed-top container">
         <a className="navbar-brand col-md-2" href="#">Reddit Clone</a>
         <div className='col'></div>
         {
