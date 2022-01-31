@@ -1,6 +1,7 @@
 import React from 'react';
-import UpvoteLogo from'../icons/upvote.png'
-import DownvoteLogo from'../icons/downvote.png'
+import UpvoteLogo from'../icons/upvote-hollow.svg'
+import DownvoteLogo from'../icons/downvote-hollow.svg'
+import moment from 'moment'
 
 /* 
     UPVOTE
@@ -12,20 +13,22 @@ import DownvoteLogo from'../icons/downvote.png'
 
 function Post(props) {
     const upvote = async () => {
-
+        console.log('upvoted');
     }
     const downvote = async () => {
-
+        console.log('downvoted');
     }
 
-  return <div className='post border rounded-md'>
-            <div className='vote-container rounded-l-md'>
-                <button className='vote' onClick={()=>{upvote()}}><img src={UpvoteLogo} alt='upvoteimg'></img></button>
-                <button className='vote' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
+  return<div className='post'>
+            <div className='vote-container rounded-l-sm'>
+                <button className='vote upvote' onClick={()=>{upvote()}}><img src={UpvoteLogo} alt='upvoteimg'></img></button>
+                <div className='net-vote'>{props.result.content.body.upvote - props.result.content.body.downvote}</div>
+                <button className='vote downvote' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
             </div>
             <div className='post-content'>
-                <input readOnly value={props.result.content.body.title}></input>
-                <input readOnly value={props.result.content.body.body}></input>
+                <input className='post-credit' readOnly value={`Posted by ` + props.result.address + ` ` + moment.unix(props.result.time).fromNow() }></input>
+                <input className='post-title' readOnly value={props.result.content.body.title}></input>
+                {/* <input className='post-body' readOnly value={props.result.content.body.body}></input> */}
             </div>
         </div>;
 }

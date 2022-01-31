@@ -5,7 +5,7 @@ import Post from './Post'
 function Posts() {
     const [result, setResult] = useState({"posts":[{'content':{'body':{'title':'','body':''}}}]})
 
-    const load = async()=> setResult(await posts.get_posts('link',{pagination: 20}))
+    const load = async()=> setResult(await posts.get_posts('TestSubreddit',{pagination: 20}))
 
     const renderPosts = ()=>{
         const postList = []

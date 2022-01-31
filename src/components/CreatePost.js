@@ -34,28 +34,32 @@ function CreatePost(props) {
             )
         }
     }
-    return <div className='createPost bg-white border border-radius-lg'>
+    return <div className='createPost'>
+        <h3>Create a post</h3>
+        <hr></hr>
         <form className="createPostForm">
+        {bodyEmpty? <p>Please fill all input fields</p>:''}
             <div className="">
                 <select className="" value={body.community} onChange={(e)=>{setBody({'title':body.title, 'body':body.body, 'community':e.target.value,'downvote':body.downvote, 'upvote':body.upvote})}} required>
-                    <option> Please select subreddit </option>
+                    <option> Choose a community </option>
                     <option value="TestSubreddit"> TestSubreddit </option>
                     <option value="TestSubreddit2"> TestSubreddit2 </option>
                 </select><br></br>
             </div>
-            <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}} required></input><br></br>
-            {/* <div className="">
-                <label>Type of Post</label>
-                <select className="" value={type} onChange={(e)=>{setType(e.target.value)}} required>
-                    <option value="text"> Text </option>
-                    <option value="content"> Media </option>
-                    <option value="link"> Link </option>
-                </select><br></br>
-            </div> */}
-            <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea><br></br>
+            <div className="text-fields">
+                <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}} required></input><br></br>
+                {/* <div className="">
+                    <label>Type of Post</label>
+                    <select className="" value={type} onChange={(e)=>{setType(e.target.value)}} required>
+                        <option value="text"> Text </option>
+                        <option value="content"> Media </option>
+                        <option value="link"> Link </option>
+                    </select><br></br>
+                </div> */}
+                <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea><br></br>
             <button className="" type="button" onClick={async()=>{send()}} value="Post">Post</button>
+            </div>
         </form>
-        {bodyEmpty? <p>Please fill all input fields</p>:''}
     </div>;
 }
 
