@@ -18,8 +18,8 @@ function Post(props) {
 
     }
 
-  return <div className='post border rounded'>
-            <div className='vote-container'>
+  return <div className='post border rounded-md'>
+            <div className='vote-container rounded-l-md'>
                 <button className='vote' onClick={()=>{upvote()}}><img src={UpvoteLogo} alt='upvoteimg'></img></button>
                 <button className='vote' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
             </div>

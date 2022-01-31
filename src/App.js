@@ -28,8 +28,8 @@ function App(props) {
   return (
     <div className="App">
       <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
-      <Posts/>
-      {/* <CreatePost walletAddress={walletAddress} alephAccount={alephAccount}/> */}
+      {/* <Posts/> */}
+      <CreatePost connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
     </div>
   );
 }
