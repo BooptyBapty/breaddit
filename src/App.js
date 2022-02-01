@@ -33,6 +33,7 @@ function App(props) {
         <Switch>
           <Route exact path="/">
             <Posts walletAddress={walletAddress} alephAccount={alephAccount}/>
+            <CreatePost connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
           </Route>
           <Route path='/createPost'>
             <CreatePost connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>

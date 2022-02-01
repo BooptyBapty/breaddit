@@ -8,10 +8,11 @@ function Navbar(props) {
     <nav className="bg-white w-screen border-b navbar">
         <Link className="logo" to='/'><img className="logo-img" src={RedditLogo} alt='reddit logo'></img></Link>
         <div className='navbar-right'>
-          <Link to='/createPost'><img src={Plus}></img></Link>
           {
-            props.walletAddress ?
-            <button className="account" href="#">{props.walletAddress}</button>
+            props.walletAddress ? <div className='navbar-right'>
+              <Link to='/createPost'><img src={Plus}></img></Link>
+              <button className="account" href="#">{props.walletAddress}</button>
+            </div>
             :
             <button className="account account-btn border" aria-current="page" href="#" onClick={async()=>{props.connectWallet()}}>Connect Wallet</button>
           }

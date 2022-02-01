@@ -29,6 +29,7 @@ function CreatePost(props) {
             {
                 'account': props.alephAccount,
                 'channel': body.community,
+                'ref': body.community,
                 'api_server': 'https://api2.aleph.im'
             }
             )
@@ -47,16 +48,8 @@ function CreatePost(props) {
                 </select><br></br>
             </div>
             <div className="text-fields">
-                <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}} required></input><br></br>
-                {/* <div className="">
-                    <label>Type of Post</label>
-                    <select className="" value={type} onChange={(e)=>{setType(e.target.value)}} required>
-                        <option value="text"> Text </option>
-                        <option value="content"> Media </option>
-                        <option value="link"> Link </option>
-                    </select><br></br>
-                </div> */}
-                <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea><br></br>
+                <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}} required></input>
+                <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea>
             <button className="" type="button" onClick={async()=>{send()}} value="Post">Post</button>
             </div>
         </form>

@@ -3,29 +3,34 @@ import { posts } from 'aleph-js'
 import Post from './Post'
 
 function Posts(props) {
-    const [result, setResult] = useState({"posts":[{'content':{'body':{'title':'','body':''}}}]})
+    const [result, setResult] = useState([{}])
 
-    const load = async()=> setResult(await posts.get_posts('TestSubreddit',{pagination: 20}))
-
-    const renderPosts = ()=>{
-        const postList = []
-        
-        for (let index = 0; index < result.posts.length; index++) {
-            postList.push(<Post walletAddress={props.walletAddress} alephAccount={props.alephAccount} result={result.posts[index]}/>)            
-        }
-
-        return postList
+    const containsID = element=>{
+        return element.item_hash == this
     }
 
+    const load = async ()=>{
+        const response = await posts.get_posts('TestSubreddit')
+        setResult(response.posts)
+        const contentType = 'chat'
+        const url = `wss://api2.aleph.im/api/ws0/messages?msgType=POST&refs=${contentType}`
+
+        const connection = new WebSocket(url) 
+
+        connection.onmessage = (e) => { 
+            let parsedJson = JSON.parse(e.data)
+            if(parsedJson.content.ref === 'TestSubreddit' ) {
+                console.log(parsedJson);
+                setResult(previousPosts => [parsedJson.content, ...previousPosts])
+            }
+        }
+    }
     useEffect(()=>{
         load()
     },[])
-    useEffect(()=>{
-        console.log(result);
-    },[result])
 
   return <div className='container posts my-2'>
-      {renderPosts()}
+      {result.map((post)=><Post key={post.item_hash} walletAddress={props.walletAddress} alephAccount={props.alephAccount} result={post}/>)}
   </div>;
 }
 

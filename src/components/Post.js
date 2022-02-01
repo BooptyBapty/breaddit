@@ -20,19 +20,23 @@ function Post(props) {
     }
 
   return<div className='post'>
-            <div className='vote-container rounded-l-sm'>
-                <button className='vote upvote' onClick={()=>{upvote()}}><img src={UpvoteLogo} alt='upvoteimg'></img></button>
-                <div className='net-vote'>{props.result.content.body.upvote - props.result.content.body.downvote}</div>
-                <button className='vote downvote' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
-            </div>
-            <div className='post-content'>
-                <div className='post-metadata'>
-                    <label className='subreddit' readOnly value={props.result.content.body.community}></label>
-                    <input className='post-credit' readOnly value={`Posted by ` + props.result.address + ` ` + moment.unix(props.result.time).fromNow() }></input>
+      {!props.result.content? '':
+        <React.Fragment>
+                <div className='vote-container rounded-l-sm'>
+                    <button className='vote upvote' onClick={()=>{upvote()}}><img src={UpvoteLogo} alt='upvoteimg'></img></button>
+                    <div className='net-vote'>0</div>
+                    <button className='vote downvote' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
                 </div>
-                <input className='post-title' readOnly value={props.result.content.body.title}></input>
-                {/* <input className='post-body' readOnly value={props.result.content.body.body}></input> */}
-            </div>
+                <div className='post-content'>
+                    <div className='post-metadata'>
+                        <label className='subreddit' readOnly value={props.result.content.body.community}></label>
+                        <input className='post-credit' readOnly value={`Posted by ` + props.result.address + ` ` + moment.unix(props.result.time).fromNow() }></input>
+                    </div>
+                    <input className='post-title' readOnly value={props.result.content.body.title}></input>
+                    <input className='post-body' readOnly value={props.result.content.body.body}></input>
+                </div>
+        </React.Fragment>
+      }
         </div>;
 }
 
