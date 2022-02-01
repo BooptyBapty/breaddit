@@ -26,7 +26,10 @@ function Post(props) {
                 <button className='vote downvote' onClick={()=>{downvote()}}><img src={DownvoteLogo} alt='downvoteimg'></img></button>
             </div>
             <div className='post-content'>
-                <input className='post-credit' readOnly value={`Posted by ` + props.result.address + ` ` + moment.unix(props.result.time).fromNow() }></input>
+                <div className='post-metadata'>
+                    <label className='subreddit' readOnly value={props.result.content.body.community}></label>
+                    <input className='post-credit' readOnly value={`Posted by ` + props.result.address + ` ` + moment.unix(props.result.time).fromNow() }></input>
+                </div>
                 <input className='post-title' readOnly value={props.result.content.body.title}></input>
                 {/* <input className='post-body' readOnly value={props.result.content.body.body}></input> */}
             </div>

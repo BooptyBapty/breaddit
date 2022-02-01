@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { posts } from 'aleph-js'
 import Post from './Post'
 
-function Posts() {
+function Posts(props) {
     const [result, setResult] = useState({"posts":[{'content':{'body':{'title':'','body':''}}}]})
 
     const load = async()=> setResult(await posts.get_posts('TestSubreddit',{pagination: 20}))
@@ -11,7 +11,7 @@ function Posts() {
         const postList = []
         
         for (let index = 0; index < result.posts.length; index++) {
-            postList.push(<Post result={result.posts[index]}/>)            
+            postList.push(<Post walletAddress={props.walletAddress} alephAccount={props.alephAccount} result={result.posts[index]}/>)            
         }
 
         return postList

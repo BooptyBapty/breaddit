@@ -17,7 +17,7 @@ function CreatePost(props) {
             await props.connectWallet()
             await send()
         }
-        else if(body.community === '' || body.title === '' || body.body === ''){
+        else if(body.community === '' || body.title === ''){
             setBodyEmpty(true)
         } else{
             setBodyEmpty(false)
@@ -38,7 +38,7 @@ function CreatePost(props) {
         <h3>Create a post</h3>
         <hr></hr>
         <form className="createPostForm">
-        {bodyEmpty? <p>Please fill all input fields</p>:''}
+        {bodyEmpty? <div className="create-error">Please fill required input fields</div>:''}
             <div className="">
                 <select className="" value={body.community} onChange={(e)=>{setBody({'title':body.title, 'body':body.body, 'community':e.target.value,'downvote':body.downvote, 'upvote':body.upvote})}} required>
                     <option> Choose a community </option>

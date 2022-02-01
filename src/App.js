@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar';
 import Posts from './components/Posts'
@@ -26,11 +27,19 @@ function App(props) {
   }, [])
 
   return (
-    <div className="App">
-      <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
-      <Posts/>
-      <CreatePost connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
+        <Switch>
+          <Route exact path="/">
+            <Posts walletAddress={walletAddress} alephAccount={alephAccount}/>
+          </Route>
+          <Route path='/createPost'>
+            <CreatePost connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
