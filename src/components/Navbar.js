@@ -10,7 +10,7 @@ function Navbar(props) {
         <div className='navbar-right'>
           {
             props.walletAddress ? <div className='navbar-right'>
-              <Link to='/createPost'><img src={Plus}></img></Link>
+              <button onClick={()=>props.setCreatePostModal(true)}><img src={Plus}></img></button>
               <button className="account" href="#">{props.walletAddress}</button>
             </div>
             :

@@ -139,7 +139,6 @@
 }
 .createPostForm{
     width: 700px;
-    border: 1px solid rgb(223, 223, 223);
     border-radius: 5px;
 }
 .createPostForm .text-fields{
