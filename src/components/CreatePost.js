@@ -60,7 +60,7 @@ function CreatePost(props) {
                     <div className="text-fields">
                         <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}} required></input>
                         <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea>
-                    <button className="" type="button" onClick={async()=>{send()}} value="Post">Post</button>
+                    <button disabled={bodyEmpty? true:false} className="" type="button" onClick={async()=>{send()}} value="Post">Post</button>
                     </div>
                 </form>
             </React.Fragment>}

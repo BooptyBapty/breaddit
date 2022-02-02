@@ -35,7 +35,7 @@ $secondary-font: 'Dongle', sans-serif;
     width: fit-content;
     min-width: 200px;
     min-height: 200px;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: $base-blue2;
 }
 .app-name{
@@ -96,7 +96,7 @@ $secondary-font: 'Dongle', sans-serif;
     padding: 0px 15px;
     margin: 0px 10px;
     height: 40px;
-    border-radius: 20px;
+    border-radius: 15px;
     outline: 1px solid $base-red;
     color: $base-red;
     background-color: transparent;
@@ -106,7 +106,7 @@ $secondary-font: 'Dongle', sans-serif;
     }
 }
 .create-button{
-    border-radius: 5px;
+    border-radius: 10px;
     width: 50px;
     height: 50px;
     &:hover{
@@ -124,23 +124,21 @@ $secondary-font: 'Dongle', sans-serif;
 }
 .post{
     background-color: $base-blue2;
-    // border: 1px solid $base-maroon;
-    border-radius: 5px;
+    border-radius: 15px;
     margin: 10px 0px;
     width: fit-content;
     min-width: 500px;
     height: fit-content;
     display: flex;
     min-height: 100px;
-    // font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .post:hover{
     cursor: pointer;
 }
 .vote-container{
     background-color: $base-blue3;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,33 +152,40 @@ $secondary-font: 'Dongle', sans-serif;
     padding: 10px;
     width: 100%;
 }
+.post-link{
+    text-decoration: none;
+}
+.post-subreddit{
+    width: fit-content;
+    padding: 0px 5px 0px 0px;
+    background-color: transparent;
+    border: 0px;
+    font-family: $secondary-font;
+    font-size:x-large;
+    color: $base-maroon;
+    
+}
 .post-credit{
     background-color: transparent;
     border: 0px;
     font-family: $secondary-font;
     font-size:x-large;
     color: $base-maroon;
-    width: 100%;   
+    width: 100%;
 }
 .post-title{
     background-color: transparent;
     color: $base-red;
-    border: 0px;
     font-family: $main-font;
     font-size:larger;
     font-weight: 600;
     cursor: pointer;
-    overflow-wrap: break-word;
-    text-overflow: ellipsis;
-    overflow: hidden;
     resize: none;
-    &:focus{
-        border: 0px;
-        outline: none !important;
-    }
-}
-.post-content input:focus{
-    outline: none !important;
+    width: 600px;
+    height: 80px;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .post-metadata{
     display: flex;
@@ -199,7 +204,7 @@ $secondary-font: 'Dongle', sans-serif;
     height: 25px;
     display: flex;
     border: 0px;
-    border-radius: 2px;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
     padding: 0%;
@@ -216,9 +221,21 @@ $secondary-font: 'Dongle', sans-serif;
 .downvote svg path{
     stroke: $base-blue2;
 }
+
+.postPage{
+    background-color: $base-blue2;
+    border-radius: 15px;
+    margin: 10px 0px;
+    width: fit-content;
+    min-width: 500px;
+    height: fit-content;
+    display: flex;
+    min-height: 100px;
+}
+
 .createPost{
     width: fit-content;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 .createPost h3{
     color: $base-red;
@@ -234,7 +251,7 @@ $secondary-font: 'Dongle', sans-serif;
 }
 .createPostForm{
     width: 700px;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: $base-blue2;
 }
 .createPostForm select{
@@ -247,7 +264,7 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 5px 0px;
     padding: 5px 10px;
     border: 0px;
-    border-radius: 5px;
+    border-radius: 15px;
     &:focus{
         outline: none !important;
         cursor: pointer;
@@ -258,7 +275,7 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 5px 0px;
     padding: 5px 10px;
     border: 0px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: $base-blue3;
     font-family: $main-font;
     color: $base-red;
@@ -272,7 +289,7 @@ $secondary-font: 'Dongle', sans-serif;
     padding: 5px 10px;
     margin: 5px 0px;
     border: 0px;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: $base-blue3;
     color: $base-red;
     font-family: $main-font;
@@ -284,7 +301,7 @@ $secondary-font: 'Dongle', sans-serif;
 .createPostForm button{
     background-color: $base-red;
     border: 0px;
-    border-radius: 15px;
+    border-radius: 5px;
     height: 30px;
     padding: 2px 15px;
     color: white;
@@ -294,12 +311,16 @@ $secondary-font: 'Dongle', sans-serif;
         background-color: $base-maroon;
         cursor: pointer;
     }
+    &:disabled{
+        background-color: $base-red;
+        cursor:no-drop;
+    }
 }
-.createPost .create-error{
+.create-error{
     border: 1px solid rgb(160, 0, 0);
     background-color: rgb(255, 232, 232);
     color: rgb(160, 0, 0);
-    border-radius: 5px;
+    border-radius: 10px;
     height: fit-content;
     width: 97%;
     padding: 5px 10px;

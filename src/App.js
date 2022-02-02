@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, useParams} from 'react-router-dom'
 import Modal from 'react-modal'
 import './App.css';
 import Nav from './components/Nav';
 import Posts from './components/Posts'
 import CreatePost from './components/CreatePost';
+import PostPage from './components/PostPage';
 
 
 function App(props) {
@@ -18,7 +19,7 @@ function App(props) {
   const modalStyle = {
     content:{
       'backgroundColor': '#1d1e2b',
-      'borderRadius': '5px',
+      'borderRadius': '15px',
       'border': '0px',
       'display': 'flex',
       'justifyContent': 'center',
@@ -32,7 +33,7 @@ function App(props) {
       'transform': 'translate(-50%, -50%)'
     },
     overlay:{
-      'backgroundColor': 'rgb(0,0,0, 0.4)'
+      'backgroundColor': 'rgb(0,0,0, 0.6)'
     }
   }
 
@@ -55,6 +56,9 @@ function App(props) {
         <Switch>
           <Route exact path="/">
             <Posts setIsLoading={setIsLoading} setCreatePostModal={setCreatePostModal} walletAddress={walletAddress} alephAccount={alephAccount}/>
+          </Route>
+          <Route exact path='/post/:item_hash'>
+            <PostPage/>
           </Route>
         </Switch>
       </div>

@@ -19,7 +19,7 @@ function Posts(props) {
 
         connection.onmessage = (e) => { 
             let parsedJson = JSON.parse(e.data)
-            if (parsedJson.content.ref){
+            if (parsedJson.content.ref !== undefined){
                 if(parsedJson.content.ref === 'TestSubreddit') {
                     if(parsedJson.address === props.walletAddress) {
                         props.setIsLoading(false)
