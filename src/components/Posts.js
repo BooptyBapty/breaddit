@@ -5,9 +5,9 @@ import Post from './Post'
 function Posts(props) {
     const [result, setResult] = useState([{}])
 
-    const containsID = element=>{
-        return element.item_hash == this
-    }
+    // const containsID = element=>{
+    //     return element.item_hash == this
+    // }
 
     const load = async ()=>{
         const response = await posts.get_posts('TestSubreddit')
@@ -19,9 +19,14 @@ function Posts(props) {
 
         connection.onmessage = (e) => { 
             let parsedJson = JSON.parse(e.data)
-            if(parsedJson.content.ref === 'TestSubreddit' ) {
-                console.log(parsedJson);
-                setResult(previousPosts => [parsedJson.content, ...previousPosts])
+            if (parsedJson.content.ref){
+                if(parsedJson.content.ref === 'TestSubreddit') {
+                    if(parsedJson.address === props.walletAddress) {
+                        props.setIsLoading(false)
+                        props.setCreatePostModal(false)
+                    }
+                    setResult(previousPosts => [parsedJson.content, ...previousPosts])
+                }
             }
         }
     }

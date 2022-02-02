@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Modal from 'react-modal'
 import './App.css';
-import Navbar from './components/Navbar';
+import Nav from './components/Nav';
 import Posts from './components/Posts'
 import CreatePost from './components/CreatePost';
-import { buildQueries } from '@testing-library/react';
+
 
 function App(props) {
 
@@ -13,22 +13,26 @@ function App(props) {
   const [alephAccount, setAlephAccount] = useState()
   const [walletAddress, setWalletAddress] = useState()
   const [createPostModal, setCreatePostModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const modalStyle = {
     content:{
-      'background-color': 'rgb(219,224,231)',
+      'backgroundColor': '#1d1e2b',
+      'borderRadius': '5px',
+      'border': '0px',
       'display': 'flex',
-      'justify-content': 'center',
-      'align-items':'center',
+      'justifyContent': 'center',
+      'alignItems':'center',
       'width': 'fit-content',
       'height': 'fit-content',
-      'padding': '20px',
+      'padding': '40px 20px',
+      'overflow':'hidden',
       'top': '50%',
       'left': '50%',
       'transform': 'translate(-50%, -50%)'
     },
     overlay:{
-      'background-color': 'rgb(0,0,0, 0.6)'
+      'backgroundColor': 'rgb(0,0,0, 0.4)'
     }
   }
 
@@ -41,25 +45,16 @@ function App(props) {
     setWalletAddress(accounts[0])
   }
 
-  useEffect(() => {
-    if (window.ethereum.isConnected()) {
-      connectWallet()
-    }
-  }, [])
-
   return (
     <Router>
       <div className="App">
-        <Navbar connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
-        <Modal style={modalStyle} portalClassName="modal" isOpen={createPostModal} onRequestClose={()=>{setCreatePostModal(false)}}>
-          <CreatePost connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
+        <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
+        <Modal ariaHideApp={false} style={modalStyle} isOpen={createPostModal} onRequestClose={()=>{setCreatePostModal(false)}}>
+          <CreatePost isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
         </Modal>
         <Switch>
           <Route exact path="/">
-            <Posts walletAddress={walletAddress} alephAccount={alephAccount}/>
-          </Route>
-          <Route path='/createPost'>
-            <CreatePost connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
+            <Posts setIsLoading={setIsLoading} setCreatePostModal={setCreatePostModal} walletAddress={walletAddress} alephAccount={alephAccount}/>
           </Route>
         </Switch>
       </div>
