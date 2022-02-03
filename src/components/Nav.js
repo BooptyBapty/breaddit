@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Pfp from '../icons/pfp.jpg';
-import UserPage from './UserPage';
 
 function Nav(props) {
 
@@ -17,6 +16,7 @@ function Nav(props) {
               </Link>
               <hr/>
               <button className='create-button' onClick={()=>props.setCreatePostModal(true)}><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px"><path fill-rule="evenodd" d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z"/></svg></button>
+              <Link to='/CreateCommunity'>lkjlk</Link>
             </div>
             :
             <button className="account account-btn" aria-current="page" href="#" onClick={async()=>{props.connectWallet()}}>Connect Wallet</button>

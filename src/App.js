@@ -7,6 +7,7 @@ import Posts from './components/Posts'
 import CreatePost from './components/CreatePost';
 import PostPage from './components/PostPage';
 import UserPage from './components/UserPage';
+import CreateCommunity from './components/CreateCommunity';
 
 
 function App(props) {
@@ -65,6 +66,9 @@ function App(props) {
           <Route exact path='/user/:account'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
             <UserPage/>
+          </Route>
+          <Route exact path='/CreateCommunity'>
+            <CreateCommunity walletAddress={walletAddress} alephAccount={alephAccount} connectWallet={connectWallet}/>
           </Route>
         </Switch>
       </div>

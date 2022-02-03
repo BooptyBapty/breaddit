@@ -270,6 +270,44 @@ $secondary-font: 'Dongle', sans-serif;
 .comment-body{
     font-family: $secondary-font;
     color: $secondary-accent;
+    font-size: x-large;
+}
+.createCommentForm{
+    background-color: $base2;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0px;
+}
+.createCommentForm textarea{
+    min-height: 70px;
+    min-width: 97%;
+    padding: 5px 10px;
+    margin: 5px 0px;
+    border: 0px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: $secondary-accent;
+    font-family: $main-font;
+    resize: none;
+    &:focus{
+        outline: none !important;
+    }
+}
+.createCommentForm button{
+    border-radius: 5px;
+    background-color: $main-accent;
+    width: 50px;
+    margin-left: 550px;
+    height: 30px;
+    border: 0px;
+    color: $secondary-accent;
+    font-family: $main-font;
+    &:hover{
+        cursor: pointer;
+        background-color: $base1;
+    }
 }
 
 .createPost{

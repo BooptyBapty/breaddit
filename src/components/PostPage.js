@@ -20,6 +20,14 @@ function PostPage(props) {
     useEffect(()=>{
         load()
     },[])
+    const [commentReady, setCommentReady] = useState(false);
+    useEffect(()=>{
+        if(commentResult[0] !== undefined){
+            if(commentResult[0].content !== undefined){
+                setCommentReady(true)
+            }
+        }
+    },[commentResult])
 
   return <div>
       {
@@ -34,11 +42,8 @@ function PostPage(props) {
                 <span className='postPage-title'>{result.content.body.title}</span>
                 <span className='postPage-body'>{result.content.body.body}</span>
             </div>
-            <CreateComment walletAddress={props.walletAddress} alephAccount={props.alephAccount} post_hash={item_hash}/>
-            {!commentResult[0].content? '':
-            commentResult.map((post)=><Comment key={post.item_hash} result={post}/>)
-            }
-            
+            <CreateComment post_hash={item_hash} walletAddress={props.walletAddress} alephAccount={props.alephAccount} post_hash={item_hash}/>
+            {commentReady? commentResult.map((post)=><Comment key={post.item_hash} result={post}/>):''}
           </React.Fragment>
       }
   </div>;
