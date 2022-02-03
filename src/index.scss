@@ -2,20 +2,26 @@ body{
     margin: 0%;
 }
 
-$base-blue: #12131f;
-$base-blue2: #1d1e2b;
-$base-blue3: #202236;
-$base-red: #E84545;
-$base-maroon: #903749;
-$base-purple: #53354A;
-$base-blue-hover: rgba($base-blue, 0.6);
+// $base1: #12131f;
+// $base2: #1d1e2b;
+// $base3: #202236;
+// $main-accent: #E84545;
+// $secondary-accent: #903749;
+// $base-purple: #53354A;
+// $base1-hover: rgba($base1, 0.6);
+
+$base1: #1f252b;
+$base2: #214a4d;
+$base3: #007c83;
+$main-accent: #ff633c;
+$secondary-accent: #EEEEEE;
+$base1-hover: rgba($base1, 0.6);
 
 
 $main-font: 'Source Serif 4', sans-serif;
 $secondary-font: 'Dongle', sans-serif;
-
 .App{
-    background-color: $base-blue;
+    background-color: $base1;
     min-height: 100vh;
     display: flex;
     flex-direction: row-reverse;
@@ -36,14 +42,18 @@ $secondary-font: 'Dongle', sans-serif;
     min-width: 200px;
     min-height: 200px;
     border-radius: 15px;
-    background-color: $base-blue2;
+    background-color: $base2;
 }
 .app-name{
     font-family: $main-font;
     font-size: xx-large;
     text-decoration:none;
-    color: $base-red;
+    color: $main-accent;
     
+}
+.profile-link{
+    width: 100%;
+    text-decoration: none;
 }
 .profile-options{
     display: flex;
@@ -57,12 +67,12 @@ $secondary-font: 'Dongle', sans-serif;
 .profile-options button{
     background-color: transparent;
     border: 0px;
-    color: $base-red;
+    color: $main-accent;
     margin: 5px;
 }
 .profile-options hr{
     width: 95%;
-    border: 1px solid $base-maroon;
+    border: 1px solid $secondary-accent;
     border-radius: 1px;
     margin: 5px 20px;
 }
@@ -72,15 +82,16 @@ $secondary-font: 'Dongle', sans-serif;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
     &:hover{
         cursor: pointer;
-        background-color: $base-blue-hover;
+        background-color: $base1-hover;
     }
 }
 .pfp{
     margin: 5px;
     width: 80px;
-    border: 1px solid $base-red;
+    border: 1px solid $main-accent;
     border-radius: 50%;
 }
 .account{
@@ -97,11 +108,11 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 0px 10px;
     height: 40px;
     border-radius: 15px;
-    outline: 1px solid $base-red;
-    color: $base-red;
+    outline: 1px solid $main-accent;
+    color: $main-accent;
     background-color: transparent;
     &:hover{
-        background-color: $base-blue3;
+        background-color: $base3;
         cursor: pointer;
     }
 }
@@ -110,12 +121,12 @@ $secondary-font: 'Dongle', sans-serif;
     width: 50px;
     height: 50px;
     &:hover{
-        background-color: $base-blue-hover;
+        background-color: $base1-hover;
         cursor: pointer;
     }
 }
 .create-button svg{
-    fill: $base-maroon;
+    fill: $secondary-accent;
 }
 .posts{
     display: flex;
@@ -123,7 +134,7 @@ $secondary-font: 'Dongle', sans-serif;
     align-items: center;
 }
 .post{
-    background-color: $base-blue2;
+    background-color: $base2;
     border-radius: 15px;
     margin: 10px 0px;
     width: fit-content;
@@ -136,7 +147,8 @@ $secondary-font: 'Dongle', sans-serif;
     cursor: pointer;
 }
 .vote-container{
-    background-color: $base-blue3;
+    background-color: transparent;
+    // border-right: 1px solid $secondary-accent;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     display: flex;
@@ -144,7 +156,10 @@ $secondary-font: 'Dongle', sans-serif;
     align-items: center;
     padding: 15px 0px;
     width: 40px;
-    color: $base-red;
+    color: $main-accent;
+}
+.vote-divider{
+    color: $main-accent;
 }
 .post-content{
     display: flex;
@@ -162,7 +177,7 @@ $secondary-font: 'Dongle', sans-serif;
     border: 0px;
     font-family: $secondary-font;
     font-size:x-large;
-    color: $base-maroon;
+    color: $secondary-accent;
     
 }
 .post-credit{
@@ -170,12 +185,12 @@ $secondary-font: 'Dongle', sans-serif;
     border: 0px;
     font-family: $secondary-font;
     font-size:x-large;
-    color: $base-maroon;
+    color: $secondary-accent;
     width: 100%;
 }
 .post-title{
     background-color: transparent;
-    color: $base-red;
+    color: $secondary-accent;
     font-family: $main-font;
     font-size:larger;
     font-weight: 600;
@@ -183,9 +198,9 @@ $secondary-font: 'Dongle', sans-serif;
     resize: none;
     width: 600px;
     height: 80px;
-    overflow-wrap: break-word;
-    overflow: hidden;
+    // overflow-wrap: break-word;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 .post-metadata{
     display: flex;
@@ -216,21 +231,37 @@ $secondary-font: 'Dongle', sans-serif;
     padding: 3px;
 }
 .upvote svg path{
-    stroke: $base-maroon;
+    stroke: $secondary-accent;
 }
 .downvote svg path{
-    stroke: $base-blue2;
+    stroke: $base3;
 }
 
 .postPage{
-    background-color: $base-blue2;
+    background-color: $base2;
     border-radius: 15px;
     margin: 10px 0px;
-    width: fit-content;
-    min-width: 500px;
+    width: 600px;
     height: fit-content;
     display: flex;
+    flex-direction: column;
     min-height: 100px;
+    padding: 10px;
+}
+
+.postPage-title{
+    color: $secondary-accent;
+    font-family: $main-font;
+    font-size: large;
+    font-weight: bold;
+}
+
+.postPage-body{
+    margin-top: 15px;
+    color: $secondary-accent;
+    font-family: $main-font;
+    font-size: medium;
+    white-space: pre-wrap
 }
 
 .createPost{
@@ -238,7 +269,7 @@ $secondary-font: 'Dongle', sans-serif;
     border-radius: 15px;
 }
 .createPost h3{
-    color: $base-red;
+    color: $main-accent;
     font-family: $main-font;
     font-size: large;
     font-weight: 600;
@@ -247,17 +278,17 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 10px 0px;
     height: 2px;
     border: 0px;
-    background-color: $base-maroon;
+    background-color: $secondary-accent;
 }
 .createPostForm{
     width: 700px;
     border-radius: 15px;
-    background-color: $base-blue2;
+    background-color: transparent;
 }
 .createPostForm select{
     min-width: fit-content;
-    background-color: $base-blue3;
-    color: $base-red;
+    background-color: $base2;
+    color: $main-accent;
     font-family: $secondary-font;
     font-size: larger;
     width: 50%;
@@ -276,9 +307,9 @@ $secondary-font: 'Dongle', sans-serif;
     padding: 5px 10px;
     border: 0px;
     border-radius: 10px;
-    background-color: $base-blue3;
+    background-color: $base2;
     font-family: $main-font;
-    color: $base-red;
+    color: $main-accent;
     &:focus{
         outline: none !important;
     }
@@ -290,8 +321,8 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 5px 0px;
     border: 0px;
     border-radius: 10px;
-    background-color: $base-blue3;
-    color: $base-red;
+    background-color: $base2;
+    color: $main-accent;
     font-family: $main-font;
     resize: none;
     &:focus{
@@ -299,7 +330,7 @@ $secondary-font: 'Dongle', sans-serif;
     }
 }
 .createPostForm button{
-    background-color: $base-red;
+    background-color: $main-accent;
     border: 0px;
     border-radius: 5px;
     height: 30px;
@@ -308,11 +339,11 @@ $secondary-font: 'Dongle', sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     &:hover{
-        background-color: $base-maroon;
+        background-color: $secondary-accent;
         cursor: pointer;
     }
     &:disabled{
-        background-color: $base-red;
+        background-color: $main-accent;
         cursor:no-drop;
     }
 }
@@ -339,7 +370,7 @@ $secondary-font: 'Dongle', sans-serif;
 
 .loading-text{
     font-family: $main-font;
-    color: $base-maroon;
+    color: $secondary-accent;
     font-size: larger;
 }
 

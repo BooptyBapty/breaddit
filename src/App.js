@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import Posts from './components/Posts'
 import CreatePost from './components/CreatePost';
 import PostPage from './components/PostPage';
+import UserPage from './components/UserPage';
 
 
 function App(props) {
@@ -18,7 +19,7 @@ function App(props) {
 
   const modalStyle = {
     content:{
-      'backgroundColor': '#1d1e2b',
+      'backgroundColor': '#1f252b',
       'borderRadius': '15px',
       'border': '0px',
       'display': 'flex',
@@ -49,16 +50,21 @@ function App(props) {
   return (
     <Router>
       <div className="App">
-        <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
         <Modal ariaHideApp={false} style={modalStyle} isOpen={createPostModal} onRequestClose={()=>{setCreatePostModal(false)}}>
           <CreatePost isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount}/>
         </Modal>
         <Switch>
           <Route exact path="/">
+            <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
             <Posts setIsLoading={setIsLoading} setCreatePostModal={setCreatePostModal} walletAddress={walletAddress} alephAccount={alephAccount}/>
           </Route>
           <Route exact path='/post/:item_hash'>
+            <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
             <PostPage/>
+          </Route>
+          <Route exact path='/user/:account'>
+            <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
+            <UserPage/>
           </Route>
         </Switch>
       </div>

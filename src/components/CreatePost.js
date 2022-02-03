@@ -1,6 +1,6 @@
 import {posts, ethereum} from "aleph-js"
 import react from "react";
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Loading from './Loading'
 
 function CreatePost(props) {
@@ -12,8 +12,7 @@ function CreatePost(props) {
         'upvote':0,
         'downvote':0
     });
-    const [bodyEmpty, setBodyEmpty] = useState(false)
-
+    const [bodyEmpty, setBodyEmpty] = useState(true)
     const send = async ()=>{
         if(!props.walletAddress) {
             await props.connectWallet()
@@ -31,7 +30,7 @@ function CreatePost(props) {
             },
             {
                 'account': props.alephAccount,
-                'channel': body.community,
+                'channel': 'Web3Forum',
                 'ref': body.community,
                 'api_server': 'https://api2.aleph.im'
             }
@@ -49,18 +48,37 @@ function CreatePost(props) {
                 <h3>Create a post</h3>
                 <hr></hr>
                 <form className="createPostForm">
-                {bodyEmpty? <div className="create-error">Please fill required input fields</div>:''}
+                {/* {bodyEmpty? <div className="create-error">Please fill required input fields</div>:''} */}
                     <div className="">
-                        <select className="" value={body.community} onChange={(e)=>{setBody({'title':body.title, 'body':body.body, 'community':e.target.value,'downvote':body.downvote, 'upvote':body.upvote})}} required>
-                            <option> Choose a community </option>
+                        <select className="" value={body.community} onChange={(e)=>{
+                            setBody({
+                                'title':body.title,
+                                'body':body.body,
+                                'community':e.target.value,
+                                'downvote':body.downvote,
+                                'upvote':body.upvote})
+                                if(e.target.value == 'Choose a community'){
+                                    setBodyEmpty(true)
+                                }else if(e.target.value.length>0 && body.title.length>0) setBodyEmpty(false)}} required>
+                            <option value='' disabled selected> Choose a community </option>
                             <option value="TestSubreddit"> TestSubreddit </option>
                             <option value="TestSubreddit2"> TestSubreddit2 </option>
                         </select>
                     </div>
                     <div className="text-fields">
-                        <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{setBody({'title':e.target.value, 'body':body.body, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}} required></input>
+                        <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{
+                            setBody({
+                                'title':e.target.value,
+                                'body':body.body,
+                                'community':body.community,
+                                'downvote':body.downvote,
+                                'upvote':body.upvote
+                                })
+                                if(e.target.value.length == 0){
+                                    setBodyEmpty(true)
+                                }else if(e.target.value.length>0 && body.community.length>0)setBodyEmpty(false)}} required></input>
                         <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea>
-                    <button disabled={bodyEmpty? true:false} className="" type="button" onClick={async()=>{send()}} value="Post">Post</button>
+                    <button disabled={bodyEmpty} className="" type="button" onClick={async()=>{send()}} value="Post">Post</button>
                     </div>
                 </form>
             </React.Fragment>}
