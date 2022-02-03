@@ -6,7 +6,7 @@ function Nav(props) {
 
   return (
     <nav className="nav">
-        <Link className="app-name" to='/'>Web3 Forum</Link>
+        <Link className="app-name" to='/'>BREADDIT</Link>
           {
             props.walletAddress ? <div className='profile-options'>
               <Link className='profile-link' to={`/user/${props.walletAddress}`}>

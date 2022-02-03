@@ -1,6 +1,5 @@
-import {posts, ethereum} from "aleph-js"
-import react from "react";
-import React, { useState, useEffect } from "react"
+import {posts} from "aleph-js"
+import React, { useState } from "react"
 import Loading from './Loading'
 
 function CreatePost(props) {
@@ -8,9 +7,6 @@ function CreatePost(props) {
     const [body, setBody] = useState({
         'title':'',
         'body':'',
-        'community':'',
-        'upvote':0,
-        'downvote':0
     });
     const [bodyEmpty, setBodyEmpty] = useState(true)
     const send = async ()=>{
@@ -25,12 +21,12 @@ function CreatePost(props) {
             props.setIsLoading(true)
             posts.submit(
                 props.alephAccount.address,
-                body.community,
+                'BREADDITPOST',
                 {'body': body
             },
             {
                 'account': props.alephAccount,
-                'channel': 'Web3Forum',
+                'channel': 'BREADDIT',
                 'ref': body.community,
                 'api_server': 'https://api2.aleph.im'
             }
@@ -48,33 +44,25 @@ function CreatePost(props) {
                 <h3>Create a post</h3>
                 <hr></hr>
                 <form className="createPostForm">
-                {/* {bodyEmpty? <div className="create-error">Please fill required input fields</div>:''} */}
-                    <div className="">
-                        <select className="" value={body.community} onChange={(e)=>{
-                            setBody({
-                                'title':body.title,
-                                'body':body.body,
-                                'community':e.target.value,
-                                'downvote':body.downvote,
-                                'upvote':body.upvote})
-                                if(e.target.value == 'Choose a community'){
-                                    setBodyEmpty(true)
-                                }else if(e.target.value.length>0 && body.title.length>0) setBodyEmpty(false)}} required>
-                            <option value='' disabled selected> Choose a community </option>
-                            <option value="TestSubreddit"> TestSubreddit </option>
-                            <option value="TestSubreddit2"> TestSubreddit2 </option>
-                        </select>
-                    </div>
+                    <select className="" value={body.community} onChange={(e)=>{
+                        setBody({
+                            'title':body.title,
+                            'body':body.body,
+                            'community':e.target.value})
+                            if(e.target.value === 'Choose a community'){
+                                setBodyEmpty(true)
+                            }else if(e.target.value.length>0 && body.title.length>0) setBodyEmpty(false)}} required>
+                        <option value='' disabled selected> Choose a community </option>
+                        <option value="TestSubreddit"> TestSubreddit </option>
+                        <option value="TestSubreddit2"> TestSubreddit2 </option>
+                    </select>
                     <div className="text-fields">
                         <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{
                             setBody({
                                 'title':e.target.value,
                                 'body':body.body,
-                                'community':body.community,
-                                'downvote':body.downvote,
-                                'upvote':body.upvote
-                                })
-                                if(e.target.value.length == 0){
+                                'community':body.community})
+                                if(e.target.value.length === 0){
                                     setBodyEmpty(true)
                                 }else if(e.target.value.length>0 && body.community.length>0)setBodyEmpty(false)}} required></input>
                         <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea>

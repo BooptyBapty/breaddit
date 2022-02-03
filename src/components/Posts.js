@@ -15,13 +15,15 @@ function Posts(props) {
 
         connection.onmessage = (e) => { 
             let parsedJson = JSON.parse(e.data)
-            if(parsedJson.content.ref === 'TestSubreddit') {
-                if(parsedJson.address === props.walletAddress) {
-                    props.setIsLoading(false)
-                    props.setCreatePostModal(false)
+            if(parsedJson.content !== undefined){
+                if(parsedJson.content.ref === 'TestSubreddit') {
+                    parsedJson.content.item_hash = parsedJson.item_hash
+                    setResult(previousPosts => [parsedJson.content, ...previousPosts])
+                    if(parsedJson.address === props.walletAddress) {
+                        props.setIsLoading(false)
+                        props.setCreatePostModal(false)
+                    }
                 }
-                parsedJson.content.item_hash = parsedJson.item_hash
-                setResult(previousPosts => [parsedJson.content, ...previousPosts])
             }
         }
     }

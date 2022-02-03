@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import {BrowserRouter as Router, Route, Switch, useParams} from 'react-router-dom'
+import { useState } from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Modal from 'react-modal'
 import './App.css';
 import Nav from './components/Nav';
@@ -60,7 +60,7 @@ function App(props) {
           </Route>
           <Route exact path='/post/:item_hash'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
-            <PostPage/>
+            <PostPage walletAddress={walletAddress} alephAccount={alephAccount}/>
           </Route>
           <Route exact path='/user/:account'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>

@@ -264,6 +264,14 @@ $secondary-font: 'Dongle', sans-serif;
     white-space: pre-wrap
 }
 
+.comment{
+    min-height: 70px;
+}
+.comment-body{
+    font-family: $secondary-font;
+    color: $secondary-accent;
+}
+
 .createPost{
     width: fit-content;
     border-radius: 15px;
