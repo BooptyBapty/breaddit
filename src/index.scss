@@ -116,6 +116,55 @@ $secondary-font: 'Dongle', sans-serif;
         cursor: pointer;
     }
 }
+
+.userPage{
+    background-color: $base2;
+    width: 100%;
+    height: fit-content;
+    min-height: 300px;
+    border-radius: 15px;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.userPicture{
+    border-radius: 50%;
+    width: 120px;
+    outline: 2px solid $main-accent;
+}
+
+.userID{
+    color: $main-accent;
+    font-family: $main-font;
+    font-size: x-large;
+}
+
+.following{
+    color: $secondary-accent;
+    font-family: $secondary-font;
+    font-size: x-large;
+}
+
+.followingCommunities{
+    width: 580px;
+    height: fit-content;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+}
+
+.followingCommunity{
+    background-color: $base3;
+    padding: 10px;
+    height: fit-content;
+    border-radius: 10px;
+}
+.nav-buttons{
+    display: flex;
+}
 .create-button{
     border-radius: 10px;
     width: 50px;
@@ -126,6 +175,22 @@ $secondary-font: 'Dongle', sans-serif;
     }
 }
 .create-button svg{
+    fill: $secondary-accent;
+}
+.create-button1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    &:hover{
+        background-color: $base1-hover;
+        cursor: pointer;
+    }
+}
+.create-button1 svg{
     fill: $secondary-accent;
 }
 .posts{
@@ -333,8 +398,8 @@ $secondary-font: 'Dongle', sans-serif;
 }
 .createPostForm select{
     min-width: fit-content;
-    background-color: $base2;
-    color: $main-accent;
+    background-color: $base1;
+    color: $secondary-accent;
     font-family: $secondary-font;
     font-size: larger;
     width: 50%;
@@ -353,9 +418,9 @@ $secondary-font: 'Dongle', sans-serif;
     padding: 5px 10px;
     border: 0px;
     border-radius: 10px;
-    background-color: $base2;
+    background-color: $base1;
     font-family: $main-font;
-    color: $main-accent;
+    color: $secondary-accent;
     &:focus{
         outline: none !important;
     }
@@ -367,8 +432,8 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 5px 0px;
     border: 0px;
     border-radius: 10px;
-    background-color: $base2;
-    color: $main-accent;
+    background-color: $base1;
+    color: $secondary-accent;
     font-family: $main-font;
     resize: none;
     &:focus{
@@ -381,11 +446,12 @@ $secondary-font: 'Dongle', sans-serif;
     border-radius: 5px;
     height: 30px;
     padding: 2px 15px;
+    margin-left: 90.5%;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
     &:hover{
-        background-color: $secondary-accent;
+        background-color: $base1;
         cursor: pointer;
     }
     &:disabled{

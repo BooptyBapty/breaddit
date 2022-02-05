@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { aggregates } from 'aleph-js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Modal from 'react-modal'
 import './App.css';
@@ -8,6 +9,7 @@ import CreatePost from './components/CreatePost';
 import PostPage from './components/PostPage';
 import UserPage from './components/UserPage';
 import CreateCommunity from './components/CreateCommunity';
+import CommunityPage from './components/CommunityPage';
 
 
 function App(props) {
@@ -20,7 +22,7 @@ function App(props) {
 
   const modalStyle = {
     content:{
-      'backgroundColor': '#1f252b',
+      'backgroundColor': '#214a4d',
       'borderRadius': '15px',
       'border': '0px',
       'display': 'flex',
@@ -40,12 +42,32 @@ function App(props) {
   }
 
   const connectWallet = async (e) => {
-    const { alephAccount, web3 } = await props.connectWeb3(e)
-    const accounts = await web3.eth.getAccounts()
+    try{
+      const { alephAccount, web3 } = await props.connectWeb3(e)
+      const accounts = await web3.eth.getAccounts()
+  
+      await aggregates.fetch_one(accounts[0], 'BREADDIT').catch(async(e)=>{
+          console.log(e);
+          await aggregates.submit(
+            accounts[0],
+            'BREADDIT',
+            {'BREADDITCOMMUNITY':[]},
+            {account:alephAccount}
+          )
+      })
+  
+      setWeb3(web3)
+      setAlephAccount(alephAccount)
+      setWalletAddress(accounts[0])
 
-    setWeb3(web3)
-    setAlephAccount(alephAccount)
-    setWalletAddress(accounts[0])
+      return {
+        WalletAddress: accounts[0],
+        AlephAccount: alephAccount
+      }
+    }catch(e){
+      console.log(e);
+    }
+
   }
 
   return (
@@ -57,7 +79,7 @@ function App(props) {
         <Switch>
           <Route exact path="/">
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
-            <Posts setIsLoading={setIsLoading} setCreatePostModal={setCreatePostModal} walletAddress={walletAddress} alephAccount={alephAccount}/>
+            <Posts connectWallet={connectWallet} setIsLoading={setIsLoading} setCreatePostModal={setCreatePostModal} walletAddress={walletAddress} alephAccount={alephAccount}/>
           </Route>
           <Route exact path='/post/:item_hash'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
@@ -65,10 +87,14 @@ function App(props) {
           </Route>
           <Route exact path='/user/:account'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
-            <UserPage/>
+            <UserPage connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} />
           </Route>
           <Route exact path='/CreateCommunity'>
             <CreateCommunity walletAddress={walletAddress} alephAccount={alephAccount} connectWallet={connectWallet}/>
+          </Route>
+          <Route exact path='/community/:community'>
+            <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
+            <CommunityPage walletAddress={walletAddress} alephAccount={alephAccount} connectWallet={connectWallet}/>
           </Route>
         </Switch>
       </div>

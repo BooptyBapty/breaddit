@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Loading from './Loading'
@@ -25,7 +25,7 @@ function Post(props) {
                 <Link className='post-link' to={`/post/${props.result.item_hash}`}>
                     <div className='post-content'>
                         <div className='post-metadata'>
-                            <span className='post-subreddit'>{props.result.content.body.community}</span>
+                            <span className='post-subreddit'>{props.result.ref}</span>
                             <span className='post-credit'>{` - Posted by ` + props.result.address.slice(0,5) + `...` + props.result.address.slice(props.result.address.length - 4, props.result.address.length) + ` • ` + moment.unix(props.result.time).fromNow() }</span>
                         </div>
                         <span className='post-title'>{props.result.content.body.title}</span>

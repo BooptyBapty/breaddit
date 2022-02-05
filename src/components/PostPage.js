@@ -9,10 +9,10 @@ import Comment from './Comment'
 
 function PostPage(props) {
     const [result, setResult] = useState({});
-    const [commentResult, setCommentResult] = useState([{}])
+    const [commentResult, setCommentResult] = useState({})
     const { item_hash } = useParams()
     const load = async()=>{
-        const response = await posts.get_posts('TestSubreddit', { hashes:[item_hash]})
+        const response = await posts.get_posts('BREADDITPOST', { hashes:[item_hash]})
         setResult(response.posts[0])
         const commentResponse = await posts.get_posts('BREADDITCOMMENT', {refs:[item_hash]})
         setCommentResult(commentResponse.posts)
@@ -31,8 +31,7 @@ function PostPage(props) {
 
   return <div>
       {
-          !result.content? <Loading/>
-          :
+          !result.content? <Loading/>:
           <React.Fragment>
             <div className='postPage'>
                 <div className='post-metadata'>

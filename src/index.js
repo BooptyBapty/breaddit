@@ -16,7 +16,7 @@ const connectWeb3 = async (e) => {
     web3 = new Web3(window.ethereum);
     try {
       // Request account access if needed
-      await window.ethereum.enable();
+      await window.ethereum.enable()
       // Accounts now exposed
       console.log("Web 3 Connected...")
     } catch (error) {

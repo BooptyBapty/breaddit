@@ -7,19 +7,20 @@ function CreatePost(props) {
     const [body, setBody] = useState({
         'title':'',
         'body':'',
-    });
+    })
+    const [communityHash, setCommunityHash] = useState('');
     const [bodyEmpty, setBodyEmpty] = useState(true)
     const send = async ()=>{
         if(!props.walletAddress) {
             await props.connectWallet()
             await send()
         }
-        else if(body.community === '' || body.title === ''){
+        else if(communityHash === '' || body.title === ''){
             setBodyEmpty(true)
         } else{
             setBodyEmpty(false)
             props.setIsLoading(true)
-            posts.submit(
+            await posts.submit(
                 props.alephAccount.address,
                 'BREADDITPOST',
                 {'body': body
@@ -27,11 +28,16 @@ function CreatePost(props) {
             {
                 'account': props.alephAccount,
                 'channel': 'BREADDIT',
-                'ref': body.community,
+                'ref': communityHash,
                 'api_server': 'https://api2.aleph.im'
             }
-            ).catch((error)=>{
+            ).then((res)=>{
+                console.log(res);
                 props.setIsLoading(false)
+                window.location.href = `/post/${res.item_hash}`
+            }).catch((error)=>{
+                props.setIsLoading(false)
+                console.error(error)
             })
         }
     }
@@ -44,28 +50,20 @@ function CreatePost(props) {
                 <h3>Create a post</h3>
                 <hr></hr>
                 <form className="createPostForm">
-                    <select className="" value={body.community} onChange={(e)=>{
-                        setBody({
-                            'title':body.title,
-                            'body':body.body,
-                            'community':e.target.value})
-                            if(e.target.value === 'Choose a community'){
-                                setBodyEmpty(true)
-                            }else if(e.target.value.length>0 && body.title.length>0) setBodyEmpty(false)}} required>
-                        <option value='' disabled selected> Choose a community </option>
-                        <option value="TestSubreddit"> TestSubreddit </option>
-                        <option value="TestSubreddit2"> TestSubreddit2 </option>
-                    </select>
+                    <input required placeholder="Community Hash" className="" value={communityHash} onChange={(e)=>{
+                        setCommunityHash(e.target.value)
+                        if(e.target.value === ''){
+                            setBodyEmpty(true)
+                        }else if(e.target.value.length>0 && body.title.length>0) setBodyEmpty(false)}}></input>
                     <div className="text-fields">
                         <input className="" type="text" value={body.title} placeholder="Title" onChange={(e)=>{
                             setBody({
                                 'title':e.target.value,
-                                'body':body.body,
-                                'community':body.community})
+                                'body':body.body})
                                 if(e.target.value.length === 0){
                                     setBodyEmpty(true)
-                                }else if(e.target.value.length>0 && body.community.length>0)setBodyEmpty(false)}} required></input>
-                        <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value, 'community':body.community,'downvote':body.downvote, 'upvote':body.upvote})}}></textarea>
+                                }else if(e.target.value.length>0 && communityHash.length>0)setBodyEmpty(false)}} required></input>
+                        <textarea className="" placeholder="Text (optional)" value={body.body} onChange={(e)=>{setBody({'title':body.title, 'body':e.target.value})}}></textarea>
                     <button disabled={bodyEmpty} className="" type="button" onClick={async()=>{send()}} value="Post">Post</button>
                     </div>
                 </form>
