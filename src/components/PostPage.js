@@ -12,6 +12,7 @@ function PostPage(props) {
     const [commentResult, setCommentResult] = useState({})
     const { item_hash } = useParams()
     const load = async()=>{
+        if(!props.walletAddress) await props.connectWallet()
         const response = await posts.get_posts('BREADDITPOST', { hashes:[item_hash]})
         setResult(response.posts[0])
         const commentResponse = await posts.get_posts('BREADDITCOMMENT', {refs:[item_hash]})

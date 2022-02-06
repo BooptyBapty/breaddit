@@ -83,7 +83,7 @@ function App(props) {
           </Route>
           <Route exact path='/post/:item_hash'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
-            <PostPage walletAddress={walletAddress} alephAccount={alephAccount}/>
+            <PostPage walletAddress={walletAddress} alephAccount={alephAccount} connectWallet={connectWallet}/>
           </Route>
           <Route exact path='/user/:account'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>

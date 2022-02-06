@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Pfp from '../icons/pfp.jpg';
 
 function Nav(props) {
 
@@ -10,7 +9,7 @@ function Nav(props) {
             props.walletAddress ? <div className='profile-options'>
               <Link className='profile-link' to={`/user/${props.walletAddress}`}>
                 <div className='profile'>
-                  <img className='pfp' src={Pfp} alt='profile'></img>
+                  <img className='pfp' src={`https://robohash.org/${props.walletAddress}.png?bgset=bg1`} alt='profile'></img>
                   <button className="account" href="#">{props.walletAddress.slice(0,7) + `...` + props.walletAddress.slice(props.walletAddress.length - 6, props.walletAddress.length)}</button>
                 </div>
               </Link>
