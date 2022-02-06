@@ -18,8 +18,8 @@ function BrowseCommunities(props) {
     },[])
 
   return <div>
-      {result.map((post)=><Link to={`/community/${post.item_hash}`}>{post.content?
-    <div className='followingCommunity noUnderline'>
+      {result.map((post)=><Link className='noUnderline' to={`/community/${post.item_hash}`}>{post.content?
+    <div className='followingCommunity'>
     <span className='userID'>{post.content.name}</span><br/>
     <span className='comment-body'>{post.item_hash}</span>
     </div>:<Loading/>}</Link>)}
