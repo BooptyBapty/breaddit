@@ -12,13 +12,22 @@ function Posts(props) {
             if(!localWalletAddress){
                 const {WalletAddress, AlephAccount} = await props.connectWallet()
                 let account = await aggregates.fetch_one(WalletAddress, 'BREADDIT')
-                const response = await posts.get_posts('BREADDITPOST', {refs:account.BREADDITCOMMUNITY})
-                setLocalWalletAddress(WalletAddress)
-                setResult(response.posts)
+                if(account.BREADDITCOMMUNITY.length>=1){
+                    const response = await posts.get_posts('BREADDITPOST', {refs:account.BREADDITCOMMUNITY})
+                    setLocalWalletAddress(WalletAddress)
+                    setResult(response.posts)
+                } else {
+                    const response = await posts.get_posts('BREADDITPOST')
+                    setResult(response.posts)}
             }else if(localWalletAddress){
                 let account = await aggregates.fetch_one(localWalletAddress, 'BREADDIT')
-                const response = await posts.get_posts('BREADDITPOST', {refs:account.BREADDITCOMMUNITY})
-                setResult(response.posts)}
+                if(account.BREADDITCOMMUNITY.length>=1){
+                    const response = await posts.get_posts('BREADDITPOST', {refs:account.BREADDITCOMMUNITY})
+                    setResult(response.posts)
+                } else {
+                    const response = await posts.get_posts('BREADDITPOST')
+                    setResult(response.posts)}
+            }
         }catch{
             const response = await posts.get_posts('BREADDITPOST')
             setResult(response.posts)

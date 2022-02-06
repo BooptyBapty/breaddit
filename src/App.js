@@ -10,6 +10,7 @@ import PostPage from './components/PostPage';
 import UserPage from './components/UserPage';
 import CreateCommunity from './components/CreateCommunity';
 import CommunityPage from './components/CommunityPage';
+import BrowseCommunities from './components/BrowseCommunities';
 
 
 function App(props) {
@@ -96,6 +97,10 @@ function App(props) {
           <Route exact path='/community/:community'>
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
             <CommunityPage walletAddress={walletAddress} alephAccount={alephAccount} connectWallet={connectWallet}/>
+          </Route>
+          <Route exact path='/browsecommunities'>
+            <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
+            <BrowseCommunities connectWallet={connectWallet}/>
           </Route>
         </Switch>
       </div>

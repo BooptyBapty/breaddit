@@ -156,12 +156,20 @@ $secondary-font: 'Dongle', sans-serif;
     display: flex;
     flex-wrap: wrap;
 }
-
+.noUnderline{
+    text-decoration: none;
+}
 .followingCommunity{
-    background-color: $base3;
+    background-color: $base2;
     padding: 10px;
+    margin: 10px 0px;
+    text-decoration: none;
     height: fit-content;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .nav-buttons{
     display: flex;
@@ -336,6 +344,7 @@ $secondary-font: 'Dongle', sans-serif;
     font-family: $secondary-font;
     color: $secondary-accent;
     font-size: x-large;
+    text-decoration: none;
 }
 .createCommentForm{
     background-color: $base2;
@@ -367,8 +376,9 @@ $secondary-font: 'Dongle', sans-serif;
     // padding: 10px;
     display: flex;
     flex-direction: column;
-    margin: 5px 0px;
-    width: 700px;
+    margin: 10px 0px;
+    width: 660px;
+    height: 320px;
 }
 
 .submitForm{
@@ -390,7 +400,7 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 10px;
     padding: 0px 5px;
     background-color: $base1;
-    min-height: 30px;
+    min-height: 40px;
     font-family: $main-font;
     font-weight: 400;
     color: $secondary-accent;
@@ -401,10 +411,10 @@ $secondary-font: 'Dongle', sans-serif;
     }
 }
 .textareaForm{
-    margin: 10px;
-    padding: 0px 5px;
+    margin: 5px 10px;
+    padding: 5px;
     background-color: $base1;
-    min-height: 100px;
+    min-height: 180px;
     font-family: $main-font;
     font-weight: 400;
     color: $secondary-accent;
