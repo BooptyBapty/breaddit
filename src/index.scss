@@ -6,7 +6,7 @@ body{
 // $base2: #1d1e2b;
 // $base3: #202236;
 // $main-accent: #E84545;
-// $secondary-accent: #903749;
+// $secondary-accent: $main-accent;
 // $base-purple: #53354A;
 // $base1-hover: rgba($base1, 0.6);
 
@@ -550,7 +550,7 @@ $secondary-font: 'Dongle', sans-serif;
   left: 23px;
   border-radius: 50%;
   border: 10px solid #000;
-  border-color: #e84545 transparent #e84545 transparent;
+  border-color: $base2 transparent $base2 transparent;
   animation: ldio-plghun5gfo 1.1764705882352942s linear infinite;
 }
 
@@ -562,7 +562,7 @@ $secondary-font: 'Dongle', sans-serif;
   animation: ldio-plghun5gfo 1.1764705882352942s linear infinite reverse;
 }
 .ldio-plghun5gfo > div:nth-child(2) {
-  border-color: transparent #903749 transparent #903749
+  border-color: transparent $main-accent transparent $main-accent
 }
 .ldio-plghun5gfo > div:nth-child(3) { border-color: transparent }
 .ldio-plghun5gfo > div:nth-child(3) div {
@@ -579,14 +579,14 @@ $secondary-font: 'Dongle', sans-serif;
   height: 10px;
   top: -10px;
   left: 62px;
-  background: #e84545;
+  background: $base2;
   border-radius: 50%;
-  box-shadow: 0 144px 0 0 #e84545;
+  box-shadow: 0 144px 0 0 $base2;
 }
 .ldio-plghun5gfo > div:nth-child(3) div:after {
   left: -10px;
   top: 62px;
-  box-shadow: 144px 0 0 0 #e84545;
+  box-shadow: 144px 0 0 0 $base2;
 }
 
 .ldio-plghun5gfo > div:nth-child(4) { border-color: transparent; }
@@ -604,14 +604,14 @@ $secondary-font: 'Dongle', sans-serif;
   height: 10px;
   top: -10px;
   left: 50px;
-  background: #903749;
+  background: $main-accent;
   border-radius: 50%;
-  box-shadow: 0 120px 0 0 #903749;
+  box-shadow: 0 120px 0 0 $main-accent;
 }
 .ldio-plghun5gfo > div:nth-child(4) div:after {
   left: -10px;
   top: 50px;
-  box-shadow: 120px 0 0 0 #903749;
+  box-shadow: 120px 0 0 0 $main-accent;
 }
 .loadingio-spinner-double-ring-58z77zb2x9l {
   width: 200px;
