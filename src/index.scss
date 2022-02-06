@@ -154,6 +154,7 @@ $secondary-font: 'Dongle', sans-serif;
     margin: 10px;
     padding: 10px;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .followingCommunity{
@@ -213,14 +214,13 @@ $secondary-font: 'Dongle', sans-serif;
 }
 .vote-container{
     background-color: transparent;
-    // border-right: 1px solid $secondary-accent;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px 0px;
-    width: 40px;
+    width: 20px;
     color: $main-accent;
 }
 .vote-divider{
@@ -360,18 +360,59 @@ $secondary-font: 'Dongle', sans-serif;
         outline: none !important;
     }
 }
-.createCommentForm button{
-    border-radius: 5px;
-    background-color: $main-accent;
-    width: 50px;
-    margin-left: 550px;
-    height: 30px;
-    border: 0px;
+
+.createCommunityForm{
+    background-color: $base2;
+    border-radius: 15px;
+    // padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0px;
+    width: 700px;
+}
+
+.submitForm{
+    width: fit-content;
     color: $secondary-accent;
-    font-family: $main-font;
+    background-color: $main-accent;
+    text-transform: uppercase;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 10px;
     &:hover{
-        cursor: pointer;
         background-color: $base1;
+        cursor: pointer;
+    }
+}
+
+.communityName{
+    margin: 10px;
+    padding: 0px 5px;
+    background-color: $base1;
+    min-height: 30px;
+    font-family: $main-font;
+    font-weight: 400;
+    color: $secondary-accent;
+    border: none;
+    border-radius: 10px;
+    &:focus{
+        outline: none !important;
+    }
+}
+.textareaForm{
+    margin: 10px;
+    padding: 0px 5px;
+    background-color: $base1;
+    min-height: 100px;
+    font-family: $main-font;
+    font-weight: 400;
+    color: $secondary-accent;
+    border: none;
+    border-radius: 10px;
+    resize: none;
+    &:focus{
+        outline: none !important;
     }
 }
 

@@ -45,7 +45,7 @@ function CreateComment(props) {
                 setBody(e.target.value)
                 if(e.target.value.length === 0) {setBodyEmpty(true)} else setBodyEmpty(false)
                 }}></textarea>
-            <button type="button" onClick={()=>{send()}} disabled={bodyEmpty}>POST</button>
+            <button className="submitForm" type="button" onClick={()=>{send()}} disabled={bodyEmpty}>POST</button>
         </form>:''
         }
   </React.Fragment>;

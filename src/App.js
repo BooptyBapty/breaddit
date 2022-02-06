@@ -90,6 +90,7 @@ function App(props) {
             <UserPage connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} />
           </Route>
           <Route exact path='/CreateCommunity'>
+            <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
             <CreateCommunity walletAddress={walletAddress} alephAccount={alephAccount} connectWallet={connectWallet}/>
           </Route>
           <Route exact path='/community/:community'>

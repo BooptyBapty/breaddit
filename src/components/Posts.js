@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { posts, aggregates } from 'aleph-js'
 import Post from './Post'
+import Loading from './Loading'
 
 function Posts(props) {
     const [result, setResult] = useState([])
@@ -9,12 +10,12 @@ function Posts(props) {
     const load = async ()=>{
         if(!localWalletAddress){
             const {WalletAddress, AlephAccount} = await props.connectWallet()
-            let communities = await aggregates.fetch_one(WalletAddress, 'BREADDIT')
-            const response = await posts.get_posts('BREADDITPOST', {refs:communities.BREADDIT})
+            let account = await aggregates.fetch_one(WalletAddress, 'BREADDIT')
+            const response = await posts.get_posts('BREADDITPOST', {refs:account.BREADDITCOMMUNITY})
             setLocalWalletAddress(WalletAddress)
             setResult(response.posts)
-                // const url = `wss://api2.aleph.im/api/ws0/messages?msgType=POST&addresses=${WalletAddress}`
-                
+            // const url = `wss://api2.aleph.im/api/ws0/messages?msgType=POST&addresses=${WalletAddress}`
+            
                 // const connection = new WebSocket(url) 
                 
                 // connection.onmessage = (e) => { 
@@ -30,20 +31,28 @@ function Posts(props) {
                 //         }
                 //     }
                 // }
-        } else if(localWalletAddress){
-            const response = await posts.get_posts('BREADDITPOST')
+            } else if(localWalletAddress){
+            let account = await aggregates.fetch_one(localWalletAddress, 'BREADDIT')
+            const response = await posts.get_posts('BREADDITPOST', {refs:account.BREADDITCOMMUNITY})
             setResult(response.posts)
         }
-        if(result.length===0){
-            const response = await posts.get_posts('BREADDITPOST')
-            setResult(response.posts)
-        }
+        // if(result.length===0){
+        //     const response = await posts.get_posts('BREADDITPOST')
+        //     setResult(response.posts)
+        // }
     }
+    
+    const loading = ()=>{
+        if (result.length === 0) return <Loading/>
+    }
+
     useEffect(()=>{
         load()
     },[])
 
+
   return <div className='posts'>
+      {loading()}
       {result.map((post)=><Post key={post.item_hash} walletAddress={localWalletAddress} alephAccount={props.alephAccount} result={post}/>)}
   </div>;
 }

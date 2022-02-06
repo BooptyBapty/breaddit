@@ -33,7 +33,7 @@ function UserPage(props) {
     <span className='following'>Following {accountRes.BREADDITCOMMUNITY.length} communities</span>
       {followingLengthOne?<span className='followingCommunity'>{accountRes.BREADDITCOMMUNITY}</span>
       :<div className='followingCommunities'>
-        {accountRes.BREADDITCOMMUNITY.map((n)=>{<span className='followingCommunity'>{n}</span>})}
+        {accountRes.BREADDITCOMMUNITY.map((n)=><span className='followingCommunity'>{n}</span>)}
       </div>
       }
   </div>
