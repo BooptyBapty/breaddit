@@ -1,5 +1,4 @@
 import React from 'react';
-import img from '../icons/404.png'
 
 function NotFound404() {
   return <div className='App'>
