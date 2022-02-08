@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { aggregates } from 'aleph-js';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import Modal from 'react-modal'
 import './App.css';
 import Nav from './components/Nav';
@@ -11,6 +11,7 @@ import UserPage from './components/UserPage';
 import CreateCommunity from './components/CreateCommunity';
 import CommunityPage from './components/CommunityPage';
 import BrowseCommunities from './components/BrowseCommunities';
+import NotFound404 from './components/NotFound404';
 
 
 function App(props) {
@@ -102,6 +103,10 @@ function App(props) {
             <Nav isLoading={isLoading} setIsLoading={setIsLoading} connectWallet={connectWallet} walletAddress={walletAddress} alephAccount={alephAccount} setCreatePostModal={setCreatePostModal}/>
             <BrowseCommunities connectWallet={connectWallet}/>
           </Route>
+          <Route exact path='/404'>
+            <NotFound404 connectWallet={connectWallet}/>
+          </Route>
+          <Redirect to='/404'/>
         </Switch>
       </div>
     </Router>

@@ -29,6 +29,10 @@ const connectWeb3 = async (e) => {
     web3 = window.web3;
     console.log("Injected web3 detected.");
   }
+
+  else{
+    window.location.href = 'https://metamask.io/download/'
+  }
   
   if (window.ethereum.isConnected()) {
     try {
