@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { aggregates } from 'aleph-js';
-import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
+import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import Modal from 'react-modal'
 import './App.css';
 import Nav from './components/Nav';
